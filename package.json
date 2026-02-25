@@ -1,0 +1,27 @@
+{
+  "name": "hamilton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "node dist/main.js",
+    "start": "npx tsc && node dist/main.js",
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Super-King-Crimson/hamilton.git"
+  },
+  "keywords": [],
+  "author": "skc",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Super-King-Crimson/hamilton/issues"
+  },
+  "homepage": "https://github.com/Super-King-Crimson/hamilton#readme",
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.9.3"
+  }
+}
