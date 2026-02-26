@@ -1,18 +1,12 @@
 {
-  "include": ["src/**/*"],
   "compilerOptions": {
-    "rootDir": "src/",
-    "outDir": "dist/",
-
     "module": "nodenext",
     "target": "esnext",
     "lib": ["esnext"],
     "types": ["node"],
 
-    // Other Outputs
-    "sourceMap": false,
-    "declaration": false,
-    "declarationMap": false,
+    "composite": true,
+    "declaration": true,
 
     // Stricter Typechecking Options
     "exactOptionalPropertyTypes": true,
@@ -23,6 +17,11 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
-  }
+    "skipLibCheck": true
+  },
+  "files": [],
+  "references": [
+    { "path": "./src" },
+    { "path": "./pages" }
+  ]
 }
