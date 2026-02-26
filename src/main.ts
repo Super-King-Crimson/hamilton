@@ -12,6 +12,14 @@ async function start(): Promise<number> {
                 res.writeHead(200, { "content-type": "text/html" });
                 res.end(readFileSync("pages/index.html"));
                 break;
+            case "/button":
+                res.writeHead(200, { "content-type": "text/html" });
+                res.end(readFileSync("pages/button/button.html"));
+                break;
+            case "/button.js":
+                res.writeHead(200, { "content-type": "text/javascript" });
+                res.end(readFileSync("pages/scripts/button/button.js"));
+                break;
             default:
                 console.log(req.url);
                 res.writeHead(404, { "content-type": "text/html" });
