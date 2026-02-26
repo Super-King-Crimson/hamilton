@@ -8,10 +8,8 @@
     "composite": true,
     "declaration": true,
 
-    // Stricter Typechecking Options
     "exactOptionalPropertyTypes": true,
 
-    // Recommended Options
     "strict": true,
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
@@ -22,7 +20,7 @@
   "files": [],
   "references": [
     { "path": "./src" },
-    { "path": "./pages" },
+    { "path": "./public" },
     { "path": "./types/" }
   ]
 }

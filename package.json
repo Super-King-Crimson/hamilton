@@ -2,11 +2,11 @@
   "name": "hamilton",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc -b",
-    "main": "node dist/main.js",
-    "start": "npx tsc -b && node dist/main.js",
+    "index": "node dist/index.js",
+    "start": "npx tsc -b && node dist/index.js",
     "watch": "npx tsc -b -w"
   },
   "repository": {
