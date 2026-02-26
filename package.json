@@ -4,9 +4,10 @@
   "description": "",
   "main": "dist/main.js",
   "scripts": {
+    "build": "npx tsc -b",
     "main": "node dist/main.js",
-    "start": "npx tsc && node dist/main.js",
-    "build": "npx tsc"
+    "start": "npx tsc -b && node dist/main.js",
+    "watch": "npx tsc -b -w"
   },
   "repository": {
     "type": "git",
