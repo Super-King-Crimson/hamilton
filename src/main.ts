@@ -18,7 +18,11 @@ async function start(): Promise<number> {
                 break;
             case "/button.js":
                 res.writeHead(200, { "content-type": "text/javascript" });
-                res.end(readFileSync("pages/scripts/button/button.js"));
+                res.end(readFileSync("pages/dist/button/button.js"));
+                break;
+            case "/scripts/signal.js":
+                res.writeHead(200, { "content-type": "text/javascript" });
+                res.end(readFileSync("pages/dist/scripts/signal.js"));
                 break;
             default:
                 console.log(req.url);
