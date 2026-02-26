@@ -22,6 +22,7 @@
   "files": [],
   "references": [
     { "path": "./src" },
-    { "path": "./pages" }
+    { "path": "./pages" },
+    { "path": "./types/" }
   ]
 }
