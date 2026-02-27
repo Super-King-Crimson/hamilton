@@ -1,5 +1,5 @@
-import { ValueSignal } from "../scripts/signal/index.js";
-import untilDraw from "../scripts/untilDraw.js";
+import { ValueSignal } from "../../scripts/signal/signals/valueSignal.js";
+import untilDraw from "../../scripts/untilDraw.js";
 
 const Header: HTMLHeadingElement = document.querySelector("h1")!;
 const PlusButton: HTMLButtonElement = document.querySelector("#plus")!;

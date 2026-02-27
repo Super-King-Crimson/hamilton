@@ -1,5 +1,4 @@
-import { type WatcherCallback, Watcher } from "./watcher.js";
-import { OnceWatcher } from "./watchers/onceWatcher.js";
+import { type WatcherCallback, Watcher, OnceWatcher } from "./watcher.js";
 
 export class Signal<T extends any[]> {
     protected _watchers: Watcher<T>[] = [];
