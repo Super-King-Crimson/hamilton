@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import type { RequestListener, IncomingMessage, ServerResponse } from "node:http";
 import { basename, extname } from "node:path";
 import { findFileRecursive } from "./findFileRecursive.js";
+import { Logger, LogLevel } from "./logger.js";
 
 export default route as RequestListener;
 
@@ -18,6 +19,8 @@ const PATH_PAGE_SCRIPTS = `${DIR_PUBLIC}/dist/${DIR_PAGES}`;
 const OK_200 = 200;
 const NOT_FOUND_404 = 404;
 
+const logger = new Logger(LogLevel.Standard);
+
 function sendResponseFile(res: ServerResponse<IncomingMessage>, contentType: string, filePath: string) {
     const fileData = readFileSync(filePath)
 
@@ -32,7 +35,7 @@ function sendPlainTextError(res: ServerResponse<IncomingMessage>, url: string) {
 
 function sendHtmlError(res: ServerResponse<IncomingMessage>, url: string) {
     res.writeHead(NOT_FOUND_404, { "content-type": "text/html" });
-    res.end(`<h1> Path ${url} not found </h1>`);
+    res.end(`<h1>Path ${url} not found</h1>`);
 }
 
 function getJsPath(path: string): Maybe<string> {
@@ -53,7 +56,7 @@ function getHtmlPath(path: string): Maybe<string> {
     let htmlPath;
 
     const att1 = `${path}/index.html`;
-    console.log("att1: " + att1);
+    logger.log("att1: " + att1);
     if ((htmlPath = findFileRecursive(PATH_PAGES, att1)) !== undefined) {
         return htmlPath;
     }
@@ -61,7 +64,7 @@ function getHtmlPath(path: string): Maybe<string> {
     const tail = basename(path);
     const att2 = `${tail}/${tail}.html`;
 
-    console.log("att2: " + att2);
+    logger.log("att2: " + att2);
 
     if ((htmlPath = findFileRecursive(PATH_PAGES, att2)) !== undefined) {
         return htmlPath;
@@ -71,7 +74,7 @@ function getHtmlPath(path: string): Maybe<string> {
 }
 
 function routeUrl(res: ServerResponse<IncomingMessage>, url: string) {
-    console.log(`User requested ${url}`);
+    logger.log(`User requested ${url}`);
 
     const ext = extname(url);
     let route;

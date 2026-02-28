@@ -1,11 +1,14 @@
 import { existsSync, readdirSync } from "node:fs";
 import { Queue } from "./queue.js";
+import { Logger, LogLevel } from "./logger.js";
+
+const logger = new Logger(LogLevel.Standard);
 
 export function findFileRecursive(path: string, head: string, ignore?: string[]): Maybe<string> {
     const q = new Queue<string>();
 
     if (!existsSync(path)) {
-        console.log("Couldn't find path ", path);
+        logger.log("Couldn't find path " + path);
         return undefined;
     }
 
@@ -15,31 +18,31 @@ export function findFileRecursive(path: string, head: string, ignore?: string[])
         const dir = q.dequeue()!;
         const attempt = `${dir}/${head}`;
 
-        console.log("attempting to find at " + attempt);
+        logger.log("attempting to find at " + attempt);
 
         if (existsSync(attempt)) {
-            console.log("found at " + attempt + "\n");
+            logger.log("found at " + attempt + "\n");
             return attempt;
         } else {
-            console.log("failed. attempting the following subdirs:");
+            logger.log("failed. attempting the following subdirs:");
             for (const dirent of readdirSync(dir, { withFileTypes: true })) {
                 const toAdd = dirent.name;
 
                 if (dirent.isDirectory()) {
 
                     if (ignore && ignore.some((dirName) => dirName === toAdd)) {
-                        console.log(`   skipping ${dir}/${toAdd} as it is in the exclude list`);
+                        logger.log(`   skipping ${dir}/${toAdd} as it is in the exclude list`);
                     } else {
                         q.enqueue(`${dir}/${toAdd}`);
-                        console.log(`   ADDING: ${dir}/${toAdd}`);
+                        logger.log(`   ADDING: ${dir}/${toAdd}`);
                     }
                 } else {
-                    console.log(`   skipping ${dir}/${toAdd} as it is not a dir`);
+                    logger.log(`   skipping ${dir}/${toAdd} as it is not a dir`);
                 }
             }
         }
     }
 
-    console.log("failed to find\n");
+    logger.log("failed to find\n");
     return undefined
 }
